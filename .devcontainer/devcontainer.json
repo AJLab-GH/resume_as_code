@@ -1,0 +1,9 @@
+{
+  "image": "docker.io/robinmordasiewicz/devcontainer:latest",
+  "initializeCommand": "docker pull docker.io/robinmordasiewicz/devcontainer:latest",
+  "name": "resume_as_code",
+  "runArgs": [
+    "--name=resume_as_code",
+    "--hostname=resume_as_code"
+  ]
+}
