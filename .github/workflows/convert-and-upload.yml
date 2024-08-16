@@ -55,7 +55,7 @@ jobs:
 
       - name: Schedule Bucket Deletion
         run: |
-          sleep 300  # Delay in seconds (15 mins)
+          sleep 300  # Delay in seconds (5 mins)
           gh workflow run delete-s3-bucket.yml --ref main
           env:
             GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
