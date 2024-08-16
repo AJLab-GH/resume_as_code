@@ -46,17 +46,16 @@ jobs:
         run: |
           URL=$(aws s3 presign \
           s3://${{ secrets.BUCKET_NAME }}/Alexandre_Jammes_CV.pdf \
-          --expires-in 3600)
-          echo "PDF_URL=$URL" >> $GITHUB_ENV
+          --expires-in 300)
+          echo "::set-output name=pdf_url::$URL"
 
       - name: Output or Email PDF URL
         run: |
-          echo "The PDF is available at ${{ env.PDF_URL }}"
-          # Optionally, send an email with the link using an email action
+          echo "The PDF is available at ${{ steps.presign.outputs.pdf_url }}"
 
       - name: Schedule Bucket Deletion
         run: |
-          sleep 900  # Delay in seconds (15 mins)
+          sleep 300  # Delay in seconds (15 mins)
           gh workflow run delete-s3-bucket.yml --ref main
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
