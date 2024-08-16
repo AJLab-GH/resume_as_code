@@ -23,6 +23,11 @@ jobs:
       - name: Rename from main.pdf to Alexandre_Jammes_CV.pdf
         run: mv main.pdf Alexandre_Jammes_CV.pdf
 
+      - name: Move PDF to outputs directory
+        run: |
+          mkdir -p outputs
+          mv Alexandre_Jammes_CV.pdf outputs/
+
       - name: Configure Git
         run: |
           git config --global user.name "github-actions[bot]"
