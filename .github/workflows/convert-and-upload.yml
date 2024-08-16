@@ -46,7 +46,7 @@ jobs:
         id: presign
         run: |
           URL=$(aws s3 presign \
-          s3://${{ env.BUCKET_NAME }}/Alexandre_Jammes_CV.pdf \ 
+          s3://${{ env.BUCKET_NAME }}/Alexandre_Jammes_CV.pdf \
           --expires-in 3600) \
           echo "PDF_URL=$URL" >> $GITHUB_ENV
 
@@ -54,7 +54,7 @@ jobs:
         run: |
           echo "The PDF is available at ${{ env.PDF_URL }}"
           # Optionally, send an email with the link using an email action
-        
+
       - name: Schedule Bucket Deletion
         run: |
           sleep 3600  # Delay in seconds (1 hour)
@@ -62,3 +62,12 @@ jobs:
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             BUCKET_NAME: ${{ env.BUCKET_NAME }}
+
+      - name: Delete All Objects in S3 Bucket
+        run: |
+          aws s3 rm s3://${{ env.BUCKET_NAME }} --recursive
+
+      - name: Delete S3 Bucket
+        run: |
+          aws s3api delete-bucket --bucket ${{ env.BUCKET_NAME }} \
+          --region ca-central-1
