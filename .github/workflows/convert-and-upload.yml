@@ -1,0 +1,72 @@
+---
+
+name: Convert LaTeX to PDF and Upload to S3
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up LaTeX
+        run: sudo apt-get install -y texlive-full
+
+      - name: Compile LaTeX to PDF
+        run: pdflatex main.tex
+
+      - name: Rename from main.pdf to Alexandre_Jammes_CV.pdf
+        run: mv main.pdf Alexandre_Jammes_CV.pdf
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ca-central-1
+
+      - name: Create S3 Bucket
+        run: |
+          aws s3api create-bucket --bucket ${{ secrets.BUCKET_NAME }} \
+          --region ca-central-1 \
+          --create-bucket-configuration LocationConstraint=ca-central-1
+
+      - name: Upload PDF to S3
+        run: |
+          aws s3 cp Alexandre_Jammes_CV.pdf \
+          s3://${{ secrets.BUCKET_NAME }}/Alexandre_Jammes_CV.pdf
+
+      - name: Generate Pre-Signed URL
+        id: presign
+        run: |
+          URL=$(aws s3 presign \
+          s3://${{ secrets.BUCKET_NAME }}/Alexandre_Jammes_CV.pdf \
+          --expires-in 3600) \
+          echo "PDF_URL=$URL" >> $GITHUB_ENV
+
+      - name: Output or Email PDF URL
+        run: |
+          echo "The PDF is available at ${{ env.PDF_URL }}"
+          # Optionally, send an email with the link using an email action
+
+      - name: Schedule Bucket Deletion
+        run: |
+          sleep 3600  # Delay in seconds (1 hour)
+          gh workflow run delete-s3-bucket.yml --ref main
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
+
+      - name: Delete All Objects in S3 Bucket
+        run: |
+          aws s3 rm s3://${{ secrets.BUCKET_NAME }} --recursive
+
+      - name: Delete S3 Bucket
+        run: |
+          aws s3api delete-bucket --bucket ${{ secrets.BUCKET_NAME }} \
+          --region ca-central-1
