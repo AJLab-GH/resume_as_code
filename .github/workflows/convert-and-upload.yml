@@ -46,7 +46,7 @@ jobs:
         run: |
           URL=$(aws s3 presign \
           s3://${{ secrets.BUCKET_NAME }}/Alexandre_Jammes_CV.pdf \
-          --expires-in 3600) \
+          --expires-in 3600)
           echo "PDF_URL=$URL" >> $GITHUB_ENV
 
       - name: Output or Email PDF URL
@@ -56,7 +56,7 @@ jobs:
 
       - name: Schedule Bucket Deletion
         run: |
-          sleep 3600  # Delay in seconds (1 hour)
+          sleep 900  # Delay in seconds (15 mins)
           gh workflow run delete-s3-bucket.yml --ref main
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
