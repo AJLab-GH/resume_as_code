@@ -50,6 +50,11 @@
     \vspace*{-1.5ex}\hrulefill\par\vspace*{0.7ex}}
 \newcommand{\headright}[1]{\vspace*{2.5ex}\textsc{\Large\color{cvblue}#1}\par%
      \vspace*{-2ex}{\color{cvblue}\hrulefill}\par}
+\newcommand{\jobtitle}[2]{%
+     \vspace{2ex} % add vertical space between entries if needed
+     \textbf{\large #1} \\ % explicitly set the font size (e.g., \large)
+     \hfill \textbf{\large #2} \\
+   }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage[colorlinks = true, urlcolor = white, linkcolor = white]{hyperref}
@@ -119,7 +124,8 @@ Languages: \textbf{English}, \textbf{French}
 
 \headright{Experience}
 
-\textsc{\textbf{Consulting System Engineer --- Cloud Architect} \textbf{at} \textbf{Fortinet (Canada).} \dates{2022.04--Present}} \\
+\vspace{-4mm}
+\jobtitle{Consulting System Engineer --- Cloud Architect at Fortinet (Canada)}{2022.04--Present}
 
 \small{Strategic Sales Support: Acted as a key technical resource for strategic pre-sales engagements across Canada, collaborating with Fortinet Sales teams to design and recommend tailored security solutions, ensuring optimal customer satisfaction.}
 
@@ -141,8 +147,7 @@ Languages: \textbf{English}, \textbf{French}
 \is
 \small{Technical Documentation: Developed comprehensive technical guides to streamline product demonstrations and emphasize Fortinet's advantages.}
 
-\vspace{2ex}
-\textsc{\textbf{Presales Security Expert --- Cloud Architect} \textbf{at} \textbf{Fortinet (Federal).} \dates{2019.06--2022.04}} \\
+\jobtitle{Presales Security Expert --- Cloud Architect at Fortinet (Federal)}{2019.06--2022.04}
 
 \small{Sales Support: Acted as the primary technical resource on sales calls, educating customers on features, specifications, functionality, and integration of networking solutions.}
 
@@ -158,8 +163,7 @@ Languages: \textbf{English}, \textbf{French}
 \is
 \small{Presentations: Delivered persuasive presentations to C-suite executives and team members, securing buy-in across all levels of the organization.}
 
-\vspace{2ex}
-\textsc{\textbf{Diamond Services Engineer \& TAC} \textbf{at} \textbf{Check Point (North-America).} \dates{2017.01--2019.06}} \\
+\jobtitle{Diamond Services Engineer \& TAC at Check Point (North-America)}{2017.01--2019.06}
 
 \small{Customer Engagement: Played a key role in the design, deployment, and maintenance of cloud security solutions for Fortune 100 companies. Additionally, led training on public and private cloud solutions for both internal stakeholders and customers across Canada, the United States, and internationally.}
 
