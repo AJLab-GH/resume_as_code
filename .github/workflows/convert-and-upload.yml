@@ -1,6 +1,6 @@
 ---
 
-name: Convert LaTeX to PDF and Upload to S3
+name: Convert LaTeX to PDF
 on:
   pull_request:
     branches:
