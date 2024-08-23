@@ -14,7 +14,7 @@ Follow these steps to quickly start working on this project:
    - Clone the forked repository to your local machine:
 
      ```bash
-     git clone https://github.com/AJLab-GH/resume_as_code.git
+     git clone https://github.com/YOUR_USERNAME/resume_as_code.git
      cd resume_as_code
      ```
 
@@ -36,8 +36,8 @@ Follow these steps to quickly start working on this project:
      ```yaml
      - name: Export CV as PDF
        run: |
-         pdflatex -output-directory=../outputs "main.tex"
-         mv ../outputs/main.pdf ../outputs/Your_Name_CV.pdf```
+         pdflatex -output-directory=../outputs "resume.tex"
+         mv ../outputs/resume.pdf ../outputs/Your_Name_CV.pdf```
 
      ```yaml
      - name: Move PDF to outputs directory
