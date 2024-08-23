@@ -20,10 +20,10 @@ jobs:
         run: sudo apt-get install -y texlive-full
 
       - name: Compile LaTeX to PDF
-        run: pdflatex main.tex
+        run: pdflatex resume.tex
 
-      - name: Rename from main.pdf to Alexandre_Jammes_CV.pdf
-        run: mv main.pdf Alexandre_Jammes_CV.pdf
+      - name: Rename from resume.pdf to Alexandre_Jammes_CV.pdf
+        run: mv resume.pdf Alexandre_Jammes_CV.pdf
 
       - name: Move PDF to outputs directory
         run: |
