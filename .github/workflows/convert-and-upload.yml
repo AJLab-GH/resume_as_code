@@ -4,7 +4,7 @@ name: Convert LaTeX to PDF
 on:
   pull_request:
     branches:
-      - main
+      - aws
 
 jobs:
   build:
@@ -14,7 +14,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
         with:
-          ref: main
+          ref: aws
 
       - name: Set up LaTeX
         run: sudo apt-get install -y texlive-full
@@ -39,6 +39,6 @@ jobs:
         run: |
           git add outputs/Alexandre_Jammes_CV.pdf
           git commit -m "Add/update PDF output"
-          git push origin main
+          git push origin aws
         env:
           GH_TOKEN: ${{ github.token }}
