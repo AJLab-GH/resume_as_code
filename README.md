@@ -21,7 +21,7 @@ Follow these steps to quickly start working on this project:
 3. **Set GitHub Action Permissions**:
    - In your `resume_as_code` repository settings, navigate to `Actions -> General` and ensure to set your `Workflow permissions` to **Read and write permissions** and choose to **Allow GitHub Actions to create and approve pull requests**.
 
-   ![GitHub Actions Workflow Permissions](images/workflow-permissions.png)
+   ![GitHub Actions Workflow Permissions](https://raw.githubusercontent.com/ajlab-gh/resume_as_code/main/images/workflow-permissions.PNG)
 
 4. **Customize Your CV**:
    - Open `resume.tex` and customize the template with your personal information. This file is where you define all the content for your CV.
